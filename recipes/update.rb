@@ -14,10 +14,7 @@ when 'debian'
   update_rtn_codes = [0]
   # note: will over-write old configuration files,
   # which is normally not the desired action for non-fresh systems
-  upgrade_cmd = 'DEBIAN_FRONTEND=noninteractive ucf
-                --purge /var/run/grub/menu.lst && \
-                apt-get -y -o Dpkg::Options::="--force-confdef" \
-                -o Dpkg::Options::="--force-confnew" dist-upgrade'
+  upgrade_cmd = 'export DEBIAN_FRONTEND=noninteractive && ucf --purge /var/run/grub/menu.lst && apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" dist-upgrade'
 when 'rhel', 'chefspec'
   update_cmd = 'yum check-update'
   update_rtn_codes = [0, 100]
