@@ -1,11 +1,12 @@
 {
   "variables": {
-    "home_dir": "{{env `HOME`}}"
+    "home_dir": "{{env `HOME`}}",
+    "origin_box_name": ""
   },
   "builders": [
     {
       "type": "virtualbox-ovf",
-      "source_path": "{{user `home_dir`}}/.vagrant.d/boxes/opscode-centos-6.5/virtualbox/box.ovf",
+      "source_path": "{{user `home_dir`}}/.vagrant.d/boxes/{{user `origin_box_name`}}/virtualbox/box.ovf",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "headless": true,
