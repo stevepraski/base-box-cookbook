@@ -17,14 +17,15 @@
   "provisioners": [
     {
       "type": "chef-solo",
+      "install_command": "wget https://www.opscode.com/chef/install.sh -O - | sudo bash",
       "cookbook_paths": ["berks-cookbooks"],
       "run_list" : ["prep-box-cookbook::default"]
     },
     {
       "type": "shell",
       "inline": [
-        "sudo curl https://raw.githubusercontent.com/chef/bento/master/scripts/centos/cleanup.sh -o /root/cleanup.sh",
-        "sudo chmod 700 /root/cleanup.sh",
+        "sudo wget https://raw.githubusercontent.com/chef/bento/master/scripts/ubuntu/cleanup.sh -O /root/cleanup.sh",
+        "sudo chmod 700 /root/cheanup.sh",
         "sudo sh /root/cleanup.sh"
       ]
     }
