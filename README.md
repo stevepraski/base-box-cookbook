@@ -5,7 +5,7 @@
 Prepare a vagrant box based on existing Opscode vagrant base boxes, with recipes applied.
 
 ### Pain Point
-When authoring cookbook recipes I found myself manually making new base vagrant boxes with finished, but dependant, recipes to save the extra converge time in test kitchen (e.g., compiling ruby from scratch, operating system updates, build tools, etc).  Unfortunately, but not unreasonably, Packer does come with a built in Vagrant builder plugin.  Fortuanely, the VirtualBox builder plugin is completely workable.
+When authoring cookbook recipes I found myself manually making new base vagrant boxes with applied finished recipes to save the extra converge time in test kitchen (e.g., compiling ruby from scratch, operating system updates, build tools, etc).  Unfortunately, but not unreasonably, Packer does not come with a built in Vagrant builder plugin.  Fortuanely, the VirtualBox builder plugin is completely workable.
 
 ### Solution
 The included scripts will apply some recipes to a base box and spit out a re-packaged vagrant box which can be imported as a new base box for development.
