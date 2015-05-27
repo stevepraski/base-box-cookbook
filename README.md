@@ -17,10 +17,11 @@ This repo can easily be forked and modified to spit out a prepared AMI with your
 ## Usage
 
 ### Pre-Requisites
- - install the chef development kit: https://downloads.chef.io/chef-dk/
- - install VirtualBox
- - install vagrant
- - install packer (https://www.packer.io/downloads.html)
+ - VirtualBox (https://www.virtualbox.org/wiki/Downloads)
+ - Vagrant (https://www.vagrantup.com/)
+ - Chef Development Kit: https://downloads.chef.io/chef-dk/
+  - the Chef Development Kit includes a number of useful dependancies
+ - Packer (https://www.packer.io/downloads.html)
 
 ### Development
 ```sh
@@ -35,6 +36,29 @@ cd scripts
 ./repack.sh <base-box-name>
 ```
 
+### Using a repacked vagrant box
+ - Add the box
+
+```sh
+vagrant box add <name-for-box> <prepped.box>
+```
+- Example:
+
+```sh
+vagrant box add centos-6.5-prepped opscode-centos-6.5-prepped.box
+```
+ - create a ".kitchen.local.yml" and add section such as:
+
+```yaml
+platforms:
+  - name: ubuntu-12.04
+    driver:
+      box: ubuntu-12.04-prepped
+  - name: centos-6.5
+    driver:
+      box: centos-6.5-prepped
+```
+
 ### Currently Supported Base Boxes
  - centos-6.5
  - ubuntu-12.04
@@ -43,10 +67,12 @@ cd scripts
 ## Notes and Warnings
 I take no responsibility for any damage caused by my code, and I'd suggest you review this cookbook before use, as you should for all code you randomly find on the Internet. This cookbook is very much in development.
 
+
 ### TODO List
  - replace the aggressive cleanup scripts from bento with custom cleanup scripts
  - collapse the Packer json scripts, and workaround lack of curl on ubuntu-12.04
- - add a firewall reciepe
+ - add a firewall recipe
+ - zero-out space prior to packing
  - 
 
 ---
