@@ -19,9 +19,21 @@ This repo can easily be forked and modified to spit out a prepared AMI with your
 ### Pre-Requisites
  - VirtualBox (https://www.virtualbox.org/wiki/Downloads)
  - Vagrant (https://www.vagrantup.com/)
- - Chef Development Kit: https://downloads.chef.io/chef-dk/
-  - the Chef Development Kit includes a number of useful dependancies
+ - Chef Development Kit (chefdk): https://downloads.chef.io/chef-dk/
+  - the Chef Development Kit includes a number of useful dependancies (but see below)
  - Packer (https://www.packer.io/downloads.html)
+
+### PATHing Fun
+ - DO NOT install rbenv, it will directly conflict with chefdk
+   - https://github.com/chef/chef-dk/issues/16
+ - personally, on Linux I've highly restricted the chefdk path, since I want to be able to do non-chef ruby development, although this is subtly imperfect, and possibly breaking:
+
+```
+export PATH="$/opt/chefdk/bin:$PATH"
+export PATH=$PATH:~/packer/
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+```
 
 ### Development
 ```sh
@@ -68,11 +80,18 @@ platforms:
 I take no responsibility for any damage caused by my code, and I'd suggest you review this cookbook before use, as you should for all code you randomly find on the Internet. This cookbook is very much in development.
 
 
+### Known Issues
+ -  Berkshelf cookbook resolution takes entirely too long
+
+
 ### TODO List
  - replace the aggressive cleanup scripts from bento with custom cleanup scripts
  - collapse the Packer json scripts, and workaround lack of curl on ubuntu-12.04
  - add a firewall recipe
  - zero-out space prior to packing
  - 
+
+### Credit and Thanks
+ - partially inspired by https://github.com/teohm/appbox-cookbook
 
 ---
