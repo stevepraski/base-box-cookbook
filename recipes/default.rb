@@ -4,4 +4,5 @@
 #
 # Copyright (c) 2015 Steven Praski, All Rights Reserved.
 
-include_recipe 'prep-box-cookbook::update'
+include_recipe '::update'
+include_recipe '::firewall'
