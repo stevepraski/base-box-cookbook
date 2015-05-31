@@ -2,7 +2,7 @@
 # Cookbook Name:: prep-box-cookbook
 # Spec:: default
 #
-# Copyright (c) 2015 The Authors, All Rights Reserved.
+# Copyright (c) 2015 Steven Praski, refer to LICENSE
 
 require 'spec_helper'
 describe 'prep-box-cookbook::vagrant' do

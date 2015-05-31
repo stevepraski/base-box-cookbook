@@ -2,7 +2,7 @@
 # Cookbook Name:: prep-box-cookbook
 # Recipe:: update
 #
-# Copyright (c) 2015 Steven Praski, All Rights Reserved.
+# Copyright (c) 2015 Steven Praski, refer to LICENSE
 
 # references:
 # https://bugs.launchpad.net/ubuntu/+source/grub/+bug/239674/comments/1

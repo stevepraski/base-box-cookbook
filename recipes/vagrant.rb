@@ -2,7 +2,7 @@
 # Cookbook Name:: prep-box-cookbook
 # Recipe:: vagrant
 #
-# Copyright (c) 2015 Steven Praski, All Rights Reserved.
+# Copyright (c) 2015 Steven Praski, refer to LICENSE
 
 remote_file '/home/vagrant/.ssh/authorized_keys' do
   source 'https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub'
