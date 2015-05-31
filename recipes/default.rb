@@ -7,3 +7,4 @@
 include_recipe 'prep-box-cookbook::update'
 include_recipe 'prep-box-cookbook::firewall'
 include_recipe 'prep-box-cookbook::admins'
+include_recipe 'prep-box-cookbook::sshd'

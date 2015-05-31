@@ -29,18 +29,20 @@ file '/root/.ssh/authorized_keys' do
   not_if { node['prep-box']['root_ssh_login_enabled'] }
 end
 
-if node['prep-box']['admin_auth_keys'].any?
-  ssh_dir = File.join('/home', admin, '.ssh')
-  directory ssh_dir do
-    owner admin
-    group admin
-    mode '0700'
-  end
-  template File.join(ssh_dir, 'authorized_keys') do
-    source 'authorized_keys.erb'
-    owner admin
-    group admin
-    mode '0400'
-    variables ssh_keys: node['prep-box']['admin_auth_keys']
-  end
+node['prep-box']['admin_auth_keys']
+ssh_dir = File.join('/home', admin, '.ssh')
+
+directory ssh_dir do
+  owner admin
+  group admin
+  mode '0700'
+  recursive true # workaround for ubuntu 12.04 not creating home directory on user creation
+end
+
+template File.join(ssh_dir, 'authorized_keys') do
+  source 'authorized_keys.erb'
+  owner admin
+  group admin
+  mode '0400'
+  variables ssh_keys: node['prep-box']['admin_auth_keys']
 end
