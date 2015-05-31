@@ -23,7 +23,7 @@ This repo can easily be forked and modified to spit out a prepared AMI with your
   - the Chef Development Kit includes a number of useful dependancies (but see below)
  - Packer (https://www.packer.io/downloads.html)
 
-### PATHing Fun
+### A note about Chef Dev Kit and other development tools
  - DO NOT install rbenv, it will directly conflict with chefdk
    - https://github.com/chef/chef-dk/issues/16
  - personally, on Linux I've highly restricted the chefdk path, since I want to be able to do non-chef ruby development, although this is subtly imperfect, and possibly breaking:
@@ -49,14 +49,16 @@ cd scripts
 ```
 
 ### Using a repacked vagrant box
- - Add the box
+ - Add the box for the prep-box-cookbook-working directory
 
 ```sh
+cd ../../prep-box-cookbook-working directory
 vagrant box add <name-for-box> <prepped.box>
 ```
 - Example:
 
 ```sh
+cd ../../prep-box-cookbook-working directory
 vagrant box add centos-6.5-prepped opscode-centos-6.5-prepped.box
 ```
  - create a ".kitchen.local.yml" and add section such as:
@@ -80,14 +82,9 @@ platforms:
 I take no responsibility for any damage caused by my code, and I'd suggest you review this cookbook before use, as you should for all code you randomly find on the Internet. This cookbook is very much in development.
 
 
-### Known Issues
- -  Berkshelf cookbook resolution takes entirely too long
-
-
-### TODO List
+### To Do List
  - replace the aggressive cleanup scripts from bento with custom cleanup scripts
- - collapse the Packer json scripts, and workaround lack of curl on ubuntu-12.04
- - add a firewall recipe
+ - possibly collapse the Packer json scripts, and workaround lack of curl on ubuntu-12.04
  - zero-out space prior to packing
  - 
 
