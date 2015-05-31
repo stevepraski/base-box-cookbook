@@ -24,13 +24,12 @@ simple_iptables_rule 'ssh' do
 end
 
 # Allow Service Ports (if any)
-if node['firewall']['tcp_ports'].any?
-  simple_iptables_rule 'allowed_ports' do
-    node['firewall']['tcp_ports'].each do |port|
-      rule "--proto tcp --dport #{port}"
-    end
-    jump 'ACCEPT'
+simple_iptables_rule 'allowed_ports' do
+  node['prep-box']['firewall']['tcp_ports'].each do |port|
+    rule "--proto tcp --dport #{port}"
   end
+  jump 'ACCEPT'
+  only_if { node['prep-box']['firewall']['tcp_ports'].any? }
 end
 
 # Allow established

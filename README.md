@@ -87,7 +87,10 @@ platforms:
  - 
 
 ### Credit and Thanks
- - partially inspired by https://github.com/teohm/appbox-cookbook
+ - partially inspired by
+   - https://github.com/teohm/appbox-cookbook
+ - thanks to opscode
+
 
 ### Licensing
 The MIT License (MIT)
