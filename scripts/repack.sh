@@ -28,6 +28,16 @@ if [ ! -d "${HOME}/.vagrant.d/boxes/${OPS_BOX_NAME}" ]; then
   vagrant box add ${OPS_BOX_NAME} http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_${BOX_NAME}_chef-provisionerless.box
 fi
 
+# setup working directory
+WORK_DIR="prep-box-cookbook-working"
+SCRIPT_DIR=`pwd`
+cd ../..
+if [ ! -d $WORK_DIR ]; then
+  mkdir $WORK_DIR
+fi 
+cd $WORK_DIR
+PREP_DIR=`pwd`
+
 # Cleanup existing vendoring
 if [ -d "berks-cookbooks" ]; then
   rm -r berks-cookbooks
@@ -38,6 +48,12 @@ if [ -d "output-virtualbox-ovf" ]; then
   rm -r output-virtualbox-ovf
 fi
 
-berks vendor -b ../Berksfile
-packer validate -var "origin_box_name=${OPS_BOX_NAME}" ${PACK_SCRIPT}
-packer build -var "origin_box_name=${OPS_BOX_NAME}" ${PACK_SCRIPT}
+# vendor
+berks vendor -b ${SCRIPT_DIR}/../Berksfile
+
+# pack
+packer validate -var "origin_box_name=${OPS_BOX_NAME}" ${SCRIPT_DIR}/${PACK_SCRIPT}
+packer build -var "origin_box_name=${OPS_BOX_NAME}" ${SCRIPT_DIR}/${PACK_SCRIPT}
+
+# notify
+echo "FINISHED: prepped box is ready at ${PREP_DIR}"
