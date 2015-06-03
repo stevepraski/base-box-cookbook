@@ -7,13 +7,11 @@
 # Copyright (c) 2015 Steven Praski
 # 
 
-root_group = node['platform_family'] == 'freebsd' ? 'wheel' : 'root'
-
 template '/etc/ssh/sshd_config' do
   source 'sshd_config.erb'
   mode '0400'
   owner 'root'
-  group root_group
+  group node['platform_family'] == 'freebsd' ? 'wheel' : 'root'
   notifies :restart, 'service[sshd]'
   variables permit_root_login: node['prep-box']['root_ssh_login_enabled'] ? 'yes' : 'no'
 end
