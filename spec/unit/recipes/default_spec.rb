@@ -1,11 +1,11 @@
 #
-# Cookbook Name:: prep-box-cookbook
+# Cookbook Name:: base-box-cookbook
 # Spec:: default
 #
 # Copyright (c) 2015 Steven Praski, refer to LICENSE
 
 require 'spec_helper'
-describe 'prep-box-cookbook::default' do
+describe 'base-box-cookbook::default' do
   context 'When all attributes are default, on an unspecified platform' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new

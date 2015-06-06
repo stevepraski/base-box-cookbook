@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: prep-box-cookbook
+# Cookbook Name:: base-box-cookbook
 # Recipe:: update
 #
 # Copyright (c) 2015 Steven Praski, refer to LICENSE
@@ -28,7 +28,7 @@ execute 'repository update' do
   command update_cmd
   user 'root'
   group 'root'
-  only_if { node['prep-box']['update']['upgrade'] }
+  only_if { node['base-box']['update']['upgrade'] }
   returns update_rtn_codes
 end
 
@@ -36,5 +36,5 @@ execute 'software upgrade' do
   command upgrade_cmd
   user 'root'
   group 'root'
-  only_if { node['prep-box']['update']['upgrade'] }
+  only_if { node['base-box']['update']['upgrade'] }
 end
