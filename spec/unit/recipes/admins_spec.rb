@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: prep-box-cookbook
+# Cookbook Name:: base-box-cookbook
 # Spec:: default
 #
 # The MIT License (MIT)
@@ -27,7 +27,7 @@
 
 require 'spec_helper'
 
-describe 'prep-box-cookbook::admins' do
+describe 'base-box-cookbook::admins' do
   context 'When all attributes are default, on an unspecified platform' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new

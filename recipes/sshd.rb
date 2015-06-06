@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: prep-box-cookbook
+# Cookbook Name:: base-box-cookbook
 # Recipe:: sshd
 #
 # The MIT License (MIT)
@@ -13,7 +13,7 @@ template '/etc/ssh/sshd_config' do
   owner 'root'
   group node['platform_family'] == 'freebsd' ? 'wheel' : 'root'
   notifies :restart, 'service[sshd]'
-  variables permit_root_login: node['prep-box']['root_ssh_login_enabled'] ? 'yes' : 'no'
+  variables permit_root_login: node['base-box']['root_ssh_login_enabled'] ? 'yes' : 'no'
 end
 
 service_name = node['platform_family'] == 'debian' ? 'ssh' : 'sshd'

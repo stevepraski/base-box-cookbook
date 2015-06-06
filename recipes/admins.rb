@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: prep-box-cookbook
+# Cookbook Name:: base-box-cookbook
 # Recipe:: admins
 #
 # The MIT License (MIT)
@@ -9,7 +9,7 @@
 
 include_recipe 'sudo'
 
-admin = node['prep-box']['admin_user']
+admin = node['base-box']['admin_user']
 
 group admin do
   action :create
@@ -26,10 +26,10 @@ end
 # this is for AWS, and other base images that enable root access
 file '/root/.ssh/authorized_keys' do
   action :delete
-  not_if { node['prep-box']['root_ssh_login_enabled'] }
+  not_if { node['base-box']['root_ssh_login_enabled'] }
 end
 
-node['prep-box']['admin_auth_keys']
+node['base-box']['admin_auth_keys']
 ssh_dir = File.join('/home', admin, '.ssh')
 
 directory ssh_dir do
@@ -44,5 +44,5 @@ template File.join(ssh_dir, 'authorized_keys') do
   owner admin
   group admin
   mode '0400'
-  variables ssh_keys: node['prep-box']['admin_auth_keys']
+  variables ssh_keys: node['base-box']['admin_auth_keys']
 end
