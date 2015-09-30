@@ -2,10 +2,7 @@
 # Cookbook Name:: base-box-cookbook
 # Recipe:: admins
 #
-# The MIT License (MIT)
-# 
-# Copyright (c) 2015 Steven Praski
-# 
+# Copyright (c) 2015 Steven Praski, refer to LICENSE
 
 include_recipe 'sudo'
 
