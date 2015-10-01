@@ -3,7 +3,7 @@
 # Spec:: default
 #
 # The MIT License (MIT)
-# 
+#
 # Copyright (c) 2015 Steven Praski, refer to LICENSE
 
 require 'spec_helper'
