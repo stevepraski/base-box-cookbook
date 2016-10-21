@@ -15,6 +15,7 @@ end
 user admin do
   gid admin
   home File.join('/home', admin)
+  manage_home true
   shell '/bin/bash'
   comment 'System Administrator'
   action :create
@@ -33,7 +34,7 @@ directory ssh_dir do
   owner admin
   group admin
   mode '0700'
-  recursive true # workaround for ubuntu 12.04 not creating home directory on user creation
+  recursive true
 end
 
 template File.join(ssh_dir, 'authorized_keys') do
