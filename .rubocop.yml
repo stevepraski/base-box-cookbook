@@ -1,2 +1,7 @@
 Metrics/LineLength:
   Enabled: false
+
+Style/SymbolArray:
+  Exclude:
+    - 'recipes/sshd.rb'
+    - 'recipes/chrony.rb'

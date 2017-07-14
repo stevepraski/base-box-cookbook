@@ -21,7 +21,7 @@ when 'rhel', 'chefspec'
   # acts on obsolete packages as well
   upgrade_cmd = 'yum update -y yum && yum upgrade -y'
 else
-  fail "Unsupported Platform Family: #{node['platform_family']}"
+  raise "Unsupported Platform Family: #{node['platform_family']}"
 end
 
 execute 'repository update' do
