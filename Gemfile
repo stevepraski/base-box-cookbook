@@ -5,10 +5,10 @@ ruby '2.2.2'
 gem 'berkshelf'
 
 # Kitchen
-gem 'test-kitchen'
 gem 'kitchen-vagrant'
+gem 'test-kitchen'
 
 # Test & Style
-gem 'foodcritic'
 gem 'chefspec'
+gem 'foodcritic'
 gem 'serverspec'
