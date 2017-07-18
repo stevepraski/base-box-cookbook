@@ -6,7 +6,7 @@ Prepare a minimum base server box.
 
 Included recipes:
  - software updates
- - firewall
+ - firewall with ban failure (Fail2Ban)
  - SSH server configuration
  - admin user creation (add your own public key for non-vagrant access)
 
@@ -37,9 +37,8 @@ bundle install
 kitchen converge
 ```
 
-### Currently tested on
- - centos-6.5
- - ubuntu-12.04
+### Currently tested with Chef 13 on
+ - centos-7.3
 
 ---
 ## Other

@@ -4,39 +4,17 @@
 #
 # Copyright (c) 2015 Steven Praski, refer to LICENSE
 
-include_recipe 'simple_iptables::default'
+include_recipe 'iptables::default'
 
-# Drop unless allowed
-simple_iptables_policy 'INPUT' do
-  policy 'DROP'
-end
-
-# Allow loopback
-simple_iptables_rule 'system' do
-  rule '--in-interface lo'
-  jump 'ACCEPT'
-end
-
-# Allow SSH (kept separate for later adding FIXME: rate limiting)
-simple_iptables_rule 'ssh' do
-  rule '--proto tcp --dport 22'
-  jump 'ACCEPT'
-end
-
-# Allow Service Ports (if any)
-simple_iptables_rule 'allowed' do
-  rules = []
-  node['base-box']['firewall']['tcp_ports'].each do |port|
-    rules.push("--proto tcp --dport #{port}")
+# push rules (from the iptables recipe documentation; this is easier than making templates)
+node['iptables']['rules'].map do |rule_name, rule_body|
+  iptables_rule rule_name do
+    lines [rule_body].flatten.join("\n")
   end
-  rule rules
-  jump 'ACCEPT'
-  only_if { node['base-box']['firewall']['tcp_ports'].any? }
 end
 
-# Allow established
-simple_iptables_rule 'established' do
-  direction 'INPUT'
-  rule '-m conntrack --ctstate ESTABLISHED,RELATED'
-  jump 'ACCEPT'
+include_recipe 'fail2ban'
+# unconditionally disable firewalld (installed by fail2ban package) to prevent interference with iptables
+service 'firewalld' do
+  action [:disable, :stop]
 end

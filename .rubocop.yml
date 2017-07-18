@@ -5,3 +5,4 @@ Style/SymbolArray:
   Exclude:
     - 'recipes/sshd.rb'
     - 'recipes/chrony.rb'
+    - 'recipes/firewall.rb'
