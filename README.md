@@ -39,6 +39,7 @@ kitchen converge
 
 ### Currently tested with Chef 13 on
  - centos-7.3
+ - ubuntu-16.04
 
 ---
 ## Other
