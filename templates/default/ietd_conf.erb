@@ -1,0 +1,8 @@
+Target <%= @iqn %>
+<% if @password -%>
+	IncomingUser <%= @user %> <%= @password %>
+<% end -%>
+	# Block devices, regular files (fileio only), LVM, and RAID
+	# Lun numbers MUST start with zero (each target needs a Lun 0)
+	Lun 0 Path=<%= @path %>,Type=fileio
+	MaxConnections <%= @conns %>

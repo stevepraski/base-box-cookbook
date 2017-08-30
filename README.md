@@ -49,10 +49,28 @@ kitchen converge
    - https://github.com/teohm/appbox-cookbook
  - thanks to opscode
 
+
+### iSCSI NAT Traversal
+iSCSI should be used in a local area network (LAN) and is designed with this assumption.  Due to how target discovery works with iSCSI, the target host will report the IP address of the LUN device.  Since this is the target's internal IP address, not its external IP, NAT traversal is problematic:
+```sh
+iscsiadm -m discovery -t sendtargets -p 192.168.1.117
+10.0.2.15:3260,1 iqn.2001-04.local.lan:storage01
+```
+If you try to login to this target, it will attempt to connect to 10.0.2.15 rather than 192.168.1.117 and fail.  Although iSCSI over a non-local network is not recommended, there is an easy workaround for NAT traversal involving SSH port forwarding (demonstated here with two vagrant boxes):
+```sh
+ssh -L 3260:localhost:3260 vagrant@192.168.1.117 -p 2222 -N &
+iscsiadm -m discovery -t sendtargets -p localhost:3260
+[::1]:3260,1 iqn.2001-04.local.lan:storage01
+iscsiadm -m node --login -p localhost:3260
+Logging in to [iface: default, target: iqn.2001-04.local.lan:storage01, portal: ::1,3260] (multiple)
+Login to [iface: default, target: iqn.2001-04.local.lan:storage01, portal: ::1,3260] successful.
+```
+Note that I've glossed over a few details, so your experience may vary.
+
 ### Licensing
 The MIT License (MIT)
 
-Copyright (c) 2015 Steven Praski
+Copyright (c) 2015 - 2017 Steven Praski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
