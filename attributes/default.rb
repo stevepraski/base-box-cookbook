@@ -19,3 +19,11 @@ default['iptables']['rules']['policy'] = [
   '-P FORWARD DROP',
   '-P OUTPUT ACCEPT'
 ]
+
+# iSCSI target service
+default['base-box']['iscsi']['drive_path'] = '/dev/sdb'
+default['base-box']['iscsi']['max_sleep'] = 3
+default['base-box']['iscsi']['iqn'] = 'iqn.2001-04.local.lan:storage01'
+default['base-box']['iscsi']['max_connections'] = 1 # CAREFUL! Filesystem must support read-write concurrency
+default['base-box']['iscsi']['username'] = 'joe'
+default['base-box']['iscsi']['password'] = nil # nil disables CHAP access control, otherwise enabled

@@ -1,3 +1,7 @@
+AllCops:
+  Exclude:
+    - 'Vagrantfile-kitchen.rb'
+
 Metrics/LineLength:
   Enabled: false
 
