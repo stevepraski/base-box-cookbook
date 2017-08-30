@@ -9,6 +9,7 @@ Included recipes:
  - firewall with ban failure (Fail2Ban)
  - SSH server configuration
  - admin user creation (add your own public key for non-vagrant access)
+ - iSCSI target service
 
 ---
 ## Usage
@@ -41,15 +42,6 @@ kitchen converge
  - centos-7.3
  - ubuntu-16.04
 
----
-## Other
-
-### Credit and Thanks
- - partially inspired by
-   - https://github.com/teohm/appbox-cookbook
- - thanks to opscode
-
-
 ### iSCSI NAT Traversal
 iSCSI should be used in a local area network (LAN) and is designed with this assumption.  Due to how target discovery works with iSCSI, the target host will report the IP address of the LUN device.  Since this is the target's internal IP address, not its external IP, NAT traversal is problematic:
 ```sh
@@ -66,6 +58,14 @@ Logging in to [iface: default, target: iqn.2001-04.local.lan:storage01, portal: 
 Login to [iface: default, target: iqn.2001-04.local.lan:storage01, portal: ::1,3260] successful.
 ```
 Note that I've glossed over a few details, so your experience may vary.
+
+---
+## Other
+
+### Credit and Thanks
+ - partially inspired by
+   - https://github.com/teohm/appbox-cookbook
+ - thanks to opscode
 
 ### Licensing
 The MIT License (MIT)
