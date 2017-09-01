@@ -59,6 +59,27 @@ Login to [iface: default, target: iqn.2001-04.local.lan:storage01, portal: ::1,3
 ```
 Note that I've glossed over a few details, so your experience may vary.
 
+### Packer
+When re-packing, allow the vagrant user SSH access via override in a wrapper recipe:
+```
+node.override['base-box']['permit_password_auth'] = true
+node.override['authorization']['sudo']['users'] = [node['base-box']['admin_user']].push('vagrant')
+```
+Or with JSON alterations:
+```
+"json": {
+  "authorization": {
+    "sudo": {
+      "users": ["sysop", "vagrant"]
+    }
+  },
+  "base-box": {
+    "permit_password_auth": true
+  }
+}
+
+```
+
 ---
 ## Other
 
