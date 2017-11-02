@@ -1,0 +1,5 @@
+# /etc/exports
+<% Array(@exports).each do |export| %>
+# <%= export[:comment] %>
+<%= ::File.join(@root_dir, export[:subdir]) %> <%= export[:hosts] %> (<%= export[:opts] %>) 
+<% end -%>
