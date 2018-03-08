@@ -9,6 +9,7 @@ chef_version '>= 13.2.20' if respond_to?(:chef_version)
 supports 'centos', '= 7.3'
 supports 'ubuntu', '= 16.04'
 
+depends 'apt', '~> 6.1'
 depends 'iptables', '~> 4.2.0'
 depends 'fail2ban', '~> 4.0.1'
 depends 'sudo'

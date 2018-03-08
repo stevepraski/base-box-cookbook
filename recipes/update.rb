@@ -8,6 +8,8 @@
 # https://bugs.launchpad.net/ubuntu/+source/grub/+bug/239674/comments/1
 # http://askubuntu.com/questions/146921/how-do-i-apt-get-y-dist-upgrade-without-a-grub-config-prompt
 
+# NOTE: add recipe[apt::cacher-client] before this recipe for apt caching
+
 case node['platform_family']
 when 'debian'
   update_cmd = 'apt-get update'

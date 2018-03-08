@@ -1,10 +1,17 @@
+# System Maintenance
 default['base-box']['update']['upgrade'] = true
+default['apt']['cacher_client']['cacher_server'] = {
+  host: '192.168.1.40',
+  port: '3142',
+  proxy_ssl: true,
+  cache_bypass: {}
+}
+
+# User Management and Secure Shell Privilages
 default['base-box']['root_ssh_login_enabled'] = false
 default['base-box']['permit_password_auth'] = false # true for support for multi-stage packer scripts
 default['base-box']['admin_user'] = 'sysop'
 default['base-box']['admin_auth_keys'] = [] # public ssh keys of admin users
-
-# Login Privilages
 default['authorization']['sudo']['users'] = [default['base-box']['admin_user']]
 default['authorization']['sudo']['passwordless'] = true
 
